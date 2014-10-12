@@ -3,5 +3,6 @@
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH=/usr/local/bin:$PATH
 export DOCKER_HOST=tcp://192.168.59.103:2375
 
