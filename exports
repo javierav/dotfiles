@@ -1,0 +1,7 @@
+# vim: ft=sh
+
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="$PATH:$HOME/.rvm/bin"
+export DOCKER_HOST=tcp://192.168.59.103:2375
+

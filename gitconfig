@@ -1,0 +1,14 @@
+# vim: ft=gitconfig
+
+[user]
+	name = Javier Aranda
+	email = javier@aranda.io
+[color]
+  ui = true
+[core]
+	excludesfile = ~/.gitignore
+  editor = vim -f
+[push]
+	default = simple
+[http]
+	sslVerify = false
