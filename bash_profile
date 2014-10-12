@@ -1,9 +1,9 @@
 # vim: ft=sh
 
-source .functions
-source .exports
-source .aliases
-source .bash_prompt
+source "$HOME/.functions"
+source "$HOME/.exports"
+source "$HOME/.aliases"
+source "$HOME/.bash_prompt"
 
 # colors for ls command
 eval `dircolors ./.dircolors`
@@ -13,4 +13,8 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# load local bash_profile
+[[ -s "$HOME/.bash_profile.local" ]] && source "$HOME/.bash_profile.local"
