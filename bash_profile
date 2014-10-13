@@ -6,10 +6,10 @@ source "$HOME/.aliases"
 source "$HOME/.bash_prompt"
 
 # colors for ls command
-eval `dircolors ./.dircolors`
+eval `dircolors $HOME/.dircolors`
 
 # bash completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
+if [[ "$OSTYPE" =~ ^darwin ]] && [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
