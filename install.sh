@@ -10,11 +10,16 @@ while getopts f opts; do
  esac
 done
 
-for file in bash_profile bashrc functions exports aliases bash_prompt dircolors wgetrc gitconfig gitignore; do
-  if [ ! -e "$HOME/.$file" ] || [ ! -z "$FORCE" ]; then
-    cp -f $(realpath $(dirname $0))/$file $HOME/.$file
-    echo "\$HOME/.$file installed!"
-  else
-    echo "\$HOME/.$file exists, skipping..."
+for file in bash_profile bashrc functions exports aliases bash_prompt dircolors wgetrc gitconfig gitignore gemrc; do
+  if [ -e "$HOME/.$file" ] && [ -z "$FORCE" ]; then
+    read -e -p "\$HOME/.$file exists, overwrite (y/n)?: " -n 1 answer
+
+    if [[ $answer = [nN] ]]; then
+      echo "\$HOME/.$file skipped!"
+      continue
+    fi
   fi
+
+  cp -f $(realpath $(dirname $0))/$file $HOME/.$file
+  echo "\$HOME/.$file installed!"
 done
