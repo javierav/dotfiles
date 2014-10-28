@@ -4,6 +4,12 @@ echo "==============================="
 echo " ARANDAIO'S DOTFILES INSTALLER "
 echo "==============================="
 
+# check dependencies
+if ! hash realpath 2> /dev/null; then
+  echo "Please install the 'realpath' command!"
+  exit 1
+fi
+
 while getopts f opts; do
  case ${opts} in
   f) FORCE=true ;;
