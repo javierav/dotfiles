@@ -8,4 +8,5 @@ functions
 gemrc
 gitconfig
 gitignore
+rvmrc
 wgetrc
