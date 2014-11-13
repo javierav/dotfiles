@@ -17,6 +17,11 @@ while getopts f opts; do
 done
 
 while read -r -u 3 file; do
+  if [ -e "$HOME/.dotignore" ] && grep -Fxq "$file" "$HOME/.dotignore"; then
+    echo "\$HOME/.$file included in .dotignore file. Skipped!"
+    continue
+  fi
+
   if [ -e "$HOME/.$file" ] && [ -z "$FORCE" ]; then
     read -e -p "\$HOME/.$file exists, overwrite (y/n)?: " -n 1 answer
 
