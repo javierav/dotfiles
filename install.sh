@@ -16,7 +16,7 @@ while getopts f opts; do
  esac
 done
 
-for file in bash_profile bashrc functions exports aliases bash_prompt dircolors wgetrc gitconfig gitignore gemrc; do
+while read -r -u 3 file; do
   if [ -e "$HOME/.$file" ] && [ -z "$FORCE" ]; then
     read -e -p "\$HOME/.$file exists, overwrite (y/n)?: " -n 1 answer
 
@@ -28,4 +28,4 @@ for file in bash_profile bashrc functions exports aliases bash_prompt dircolors 
 
   cp -f $(realpath $(dirname $0))/$file $HOME/.$file
   echo "\$HOME/.$file installed!"
-done
+done 3< $(realpath $(dirname $0))/_files
