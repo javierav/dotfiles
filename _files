@@ -8,5 +8,6 @@ functions
 gemrc
 gitconfig
 gitignore
+rubocop.yml
 rvmrc
 wgetrc
