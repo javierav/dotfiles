@@ -10,4 +10,5 @@ gitconfig
 gitignore
 rubocop.yml
 rvmrc
+tmux.conf
 wgetrc
