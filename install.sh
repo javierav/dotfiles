@@ -20,9 +20,14 @@ if ! hash realpath 2> /dev/null; then
 fi
 
 # opts
-while getopts f opts; do
+while getopts "fo:" opts; do
  case ${opts} in
-  f) FORCE=true ;;
+  f)
+    FORCE=true
+    ;;
+  o)
+    ONLY="$OPTARG"
+    ;;
  esac
 done
 
@@ -30,6 +35,10 @@ done
 while read -r -u 3 file; do
   if [ -e "$HOME/.dotignore" ] && grep -Fxq "$file" "$HOME/.dotignore"; then
     echo -e "$BLUE\$HOME/.$file included in .dotignore file. Skipped!$OFF"
+    continue
+  fi
+
+  if [ -n "$ONLY" ] && [ $file != $ONLY ]; then
     continue
   fi
 
@@ -44,4 +53,8 @@ while read -r -u 3 file; do
 
   cp -f $(realpath $(dirname $0))/$file $HOME/.$file
   echo -e "$GREEN\$HOME/.$file installed!$OFF"
+
+  if [ -n "$ONLY" ]; then
+    exit 0
+  fi
 done 3< $(realpath $(dirname $0))/_files
