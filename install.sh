@@ -20,19 +20,23 @@ if ! hash realpath 2> /dev/null; then
 fi
 
 # opts
-while getopts "fo:h" opts; do
+while getopts "fo:ph" opts; do
  case ${opts} in
   f)
-    FORCE=true
+    FORCE="yes"
     ;;
   o)
     ONLY="$OPTARG"
     ;;
+  p)
+    PRETEND="yes"
+    ;;
   h)
     echo -e "Usage: ./install.sh [options]\n\nOptions:\n"
-    echo -e "  -f force the installation"
-    echo -e "  -o <name> specify the file to install"
-    echo -e "  -h print this help"
+    echo "  -f force the installation"
+    echo "  -o <name> specify the file to install"
+    echo "  -p pretend"
+    echo "  -h print this help"
 
     exit 1
  esac
@@ -58,8 +62,12 @@ while read -r -u 3 file; do
     fi
   fi
 
-  cp -f $(realpath $(dirname $0))/$file $HOME/.$file
-  echo -e "$GREEN\$HOME/.$file installed!$OFF"
+  if [ -z "$PRETEND" ]; then
+    cp -f $(realpath $(dirname $0))/$file $HOME/.$file
+    echo -e "$GREEN\$HOME/.$file installed!$OFF"
+  else
+    echo "[pretend] $(realpath $(dirname $0))/$file -> $HOME/.$file"
+  fi
 
   if [ -n "$ONLY" ]; then
     exit 0
