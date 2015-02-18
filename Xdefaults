@@ -2,7 +2,7 @@
 ! Xft settings
 !-------------------------------------------------------------------------------
 
-Xft.dpi:                    96
+Xft.dpi:                    105
 Xft.antialias:              true
 Xft.rgba:                   rgb
 Xft.hinting:                true
@@ -31,8 +31,8 @@ URxvt.allow_bold:           false
 /* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
 !URxvt*font: xft:Monospace:pixelsize=14
 !URxvt*boldFont: xft:Monospace:pixelsize=14
-URxvt*font: xft:Monaco:pixelsize=13
-URxvt*boldFont: xft:Monaco:pixelsize=13
+URxvt*font: xft:Monaco:pixelsize=15
+URxvt*boldFont: xft:Monaco:pixelsize=15
 
 ! Fix font space
 URxvt*letterSpace: -1.5
@@ -54,44 +54,26 @@ URxvt.cursorUnderline:      false
 ! Pointer
 URxvt.pointerBlank:         true
 
-!!Source http://github.com/altercation/solarized
-
-*background: #002b36
-*foreground: #657b83
-!!*fading: 40
-*fadeColor: #002b36
-*cursorColor: #93a1a1
-*pointerColorBackground: #586e75
-*pointerColorForeground: #93a1a1
-
-!! black dark/light
-*color0: #073642
-*color8: #002b36
-
-!! red dark/light
-*color1: #dc322f
-*color9: #cb4b16
-
-!! green dark/light
-*color2: #859900
-*color10: #586e75
-
-!! yellow dark/light
-*color3: #b58900
-*color11: #657b83
-
-!! blue dark/light
-*color4: #268bd2
-*color12: #839496
-
-!! magenta dark/light
-*color5: #d33682
-*color13: #6c71c4
-
-!! cyan dark/light
-*color6: #2aa198
-*color14: #93a1a1
-
-!! white dark/light
-*color7: #eee8d5
-*color15: #fdf6e3
+! seoul256 (dark) theme adapted for URxvt
+! append the content of this file to your .Xresources
+URxvt*background: #3A3A3A
+URxvt*foreground: #D0D0D0
+URxvt*color0: #4E4E4E
+URxvt*color1: #D68787
+URxvt*color2: #5F865F
+URxvt*color3: #D8AF5F
+URxvt*color4: #85ADD4
+URxvt*color5: #D7AFAF
+URxvt*color6: #87AFAF
+URxvt*color7: #D0D0D0
+URxvt*color8: #626262
+URxvt*color9: #D75F87
+URxvt*color10: #87AF87
+URxvt*color11: #FFD787
+URxvt*color12: #ADD4FB
+URxvt*color13: #FFAFAF
+URxvt*color14: #87D7D7
+URxvt*color15: #E4E4E4
+URxvt*cursorColor: #D0D0D0
+URxvt*cursorColor2: #3A3A3A
+URxvt*colorBD: #E4E4E4

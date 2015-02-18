@@ -123,7 +123,7 @@ function prompt_command() {
     PS1="$PS1$GREEN"
   fi
 
-  PS1="$PS1\u@\h$BLUE \w $YELLOW\$ $WHITE"
+  PS1="$PS1\u@\h$BOLD_BLUE \w $YELLOW\$ $WHITE"
 }
 
 export PROMPT_COMMAND="prompt_command"
