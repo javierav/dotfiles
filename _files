@@ -12,3 +12,4 @@ rubocop.yml
 rvmrc
 tmux.conf
 wgetrc
+Xdefaults
