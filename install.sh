@@ -14,10 +14,14 @@ echo " ARANDAIO'S DOTFILES INSTALLER "
 echo -e "===============================$OFF\n"
 
 # check dependencies
-if ! hash realpath 2> /dev/null; then
-  echo -e "${RED}Please install the 'realpath' command!"
-  exit 1
-fi
+dependencies=(realpath direnv)
+
+for dep in "${dependencies[@]}"; do
+  if ! hash $dep 2> /dev/null; then
+    echo -e "${RED}Error. Please install the '$dep' command!\n"
+    exit 1
+  fi
+done
 
 # opts
 while getopts "fo:ph" opts; do
