@@ -24,7 +24,7 @@ for dep in "${dependencies[@]}"; do
 done
 
 # opts
-while getopts "fo:ph" opts; do
+while getopts "fo:s:ph" opts; do
  case ${opts} in
   f)
     FORCE="yes"
@@ -35,10 +35,14 @@ while getopts "fo:ph" opts; do
   p)
     PRETEND="yes"
     ;;
+  s)
+    SKIP+=("$OPTARG")
+    ;;
   h)
     echo -e "Usage: ./install.sh [options]\n\nOptions:\n"
     echo "  -f force the installation"
     echo "  -o <name> specify the file to install"
+    echo "  -s <name> specify the file to skip"
     echo "  -p pretend"
     echo "  -h print this help"
 
@@ -56,6 +60,13 @@ while read -r -u 3 file; do
   if [ -n "$ONLY" ] && [ $file != $ONLY ]; then
     continue
   fi
+
+  # skip option
+  for s in "${SKIP[@]}"; do
+    if [ "$s" == "$file" ]; then
+      continue 2
+    fi
+  done
 
   if [ -e "$HOME/.$file" ] && [ -z "$FORCE" ]; then
     read -e -p $'\033[0;33m'"\$HOME/.$file exists, overwrite (y/n)?: "$'\033[0m' -n 1 answer
