@@ -111,15 +111,16 @@ IBWHITE='\[\033[0;107m\]'   # White
 function prompt_command() {
   PS1="$OFF"
 
+  # git branch and status
+  if [[ -n $(parse_git_branch) ]]; then
+    PS1="$PS1$RED\$(parse_git_branch) "
+  fi
+
   if [[ $(id -u) -eq 0 ]]; then
     # root prompt
     PS1="$PS1$BOLD_RED"
   else
     # normal user prompt
-    if [[ -n $(parse_git_branch) ]]; then
-      PS1="$PS1$RED\$(parse_git_branch) "
-    fi
-
     PS1="$PS1$GREEN"
   fi
 
