@@ -40,11 +40,17 @@ while getopts "fo:s:ph" opts; do
     ;;
   h)
     echo -e "Usage: ./install.sh [options]\n\nOptions:\n"
-    echo "  -f force the installation"
-    echo "  -o <name> specify the file to install"
-    echo "  -s <name> specify the file to skip"
-    echo "  -p pretend"
-    echo "  -h print this help"
+    echo -e "  -f force the installation"
+    echo -e "  -o <name> specify the file to install"
+    echo -e "  -s <name> specify the file to skip"
+    echo -e "  -p pretend"
+    echo -e "  -h print this help\n\n"
+
+    echo -e "[.dotignore]\n"
+    echo -e "Use this file in your \$HOME to avoid the installation of"
+    echo -e "specific dotfiles. One filename per line. "
+
+    echo ""
 
     exit 1
  esac
