@@ -58,11 +58,13 @@ done
 
 # install dotfiles
 while read -r -u 3 file; do
+  # skip due to dotignore
   if [ -e "$HOME/.dotignore" ] && grep -Fxq "$file" "$HOME/.dotignore"; then
     echo -e "$BLUE\$HOME/.$file included in .dotignore file. Skipped!$OFF"
     continue
   fi
 
+  # skip due to only option
   if [ -n "$ONLY" ] && [ $file != $ONLY ]; then
     continue
   fi
@@ -74,9 +76,11 @@ while read -r -u 3 file; do
     fi
   done
 
+  # already exists a file at the same path
   if [ -e "$HOME/.$file" ] && [ -z "$FORCE" ]; then
     read -e -p $'\033[0;33m'"\$HOME/.$file exists, overwrite (y/n)?: "$'\033[0m' -n 1 answer
 
+    # skip
     if [[ $answer = [nN] ]]; then
       echo -e "$BLUE\$HOME/.$file skipped!$OFF"
       continue
@@ -84,12 +88,15 @@ while read -r -u 3 file; do
   fi
 
   if [ -z "$PRETEND" ]; then
+    # copy the file
     cp -f $(realpath $(dirname $0))/$file $HOME/.$file
     echo -e "$GREEN\$HOME/.$file installed!$OFF"
   else
+    # pretend
     echo "[pretend] $(realpath $(dirname $0))/$file -> $HOME/.$file"
   fi
 
+  # exit due to only option
   if [ -n "$ONLY" ]; then
     exit 0
   fi
