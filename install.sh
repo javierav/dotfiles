@@ -8,13 +8,16 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 PURPLE='\033[0;35m'
 
+# current path
+current_path=$(realpath $(dirname $0))
+
 # title
 echo -e "$PURPLE==============================="
 echo " ARANDAIO'S DOTFILES INSTALLER "
 echo -e "===============================$OFF\n"
 
 # check dependencies
-dependencies=(realpath direnv)
+dependencies=(realpath direnv md5sum awk)
 
 for dep in "${dependencies[@]}"; do
   if ! hash $dep 2> /dev/null; then
@@ -78,26 +81,37 @@ while read -r -u 3 file; do
 
   # already exists a file at the same path
   if [ -e "$HOME/.$file" ] && [ -z "$FORCE" ]; then
-    read -e -p $'\033[0;33m'"\$HOME/.$file exists, overwrite (y/n)?: "$'\033[0m' -n 1 answer
+    # checksum
+    md5_dotfiles=$(md5sum $current_path/$file | awk '{ print $1 }')
+    md5_home=$(md5sum $HOME/.$file | awk '{ print $1 }')
 
-    # skip
-    if [[ $answer = [nN] ]]; then
-      echo -e "$BLUE\$HOME/.$file skipped!$OFF"
+    # only if are different
+    if [ $md5_dotfiles != $md5_home ]; then
+      read -e -p $'\033[0;33m'"\$HOME/.$file exists and is different, overwrite (y/n)?: "$'\033[0m' -n 1 answer
+
+      # skip
+      if [[ $answer = [nN] ]]; then
+        echo -e "$BLUE\$HOME/.$file skipped!$OFF"
+        continue
+      fi
+    else
+      # skip because are equal
+      echo -e "$BLUE\$HOME/.$file skipped! (is equal)$OFF"
       continue
     fi
   fi
 
   if [ -z "$PRETEND" ]; then
     # copy the file
-    cp -f $(realpath $(dirname $0))/$file $HOME/.$file
+    cp -f $current_path/$file $HOME/.$file
     echo -e "$GREEN\$HOME/.$file installed!$OFF"
   else
     # pretend
-    echo "[pretend] $(realpath $(dirname $0))/$file -> $HOME/.$file"
+    echo "[pretend] $current_path/$file -> $HOME/.$file"
   fi
 
   # exit due to only option
   if [ -n "$ONLY" ]; then
     exit 0
   fi
-done 3< $(realpath $(dirname $0))/_files
+done 3< $current_path/_files
