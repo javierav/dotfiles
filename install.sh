@@ -21,7 +21,7 @@ dependencies=(realpath direnv md5sum awk)
 
 for dep in "${dependencies[@]}"; do
   if ! hash $dep 2> /dev/null; then
-    echo -e "${RED}Error. Please install the '$dep' command!\n"
+    echo -e "${RED}Error. Please install the '$dep' command!$OFF\n"
     exit 1
   fi
 done
