@@ -8,16 +8,13 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 PURPLE='\033[0;35m'
 
-# current path
-current_path=$(realpath $(dirname $0))
-
 # title
 echo -e "$PURPLE==============================="
 echo " ARANDAIO'S DOTFILES INSTALLER "
 echo -e "===============================$OFF\n"
 
 # check dependencies
-dependencies=(realpath direnv md5sum awk)
+dependencies=(realpath md5sum awk)
 
 for dep in "${dependencies[@]}"; do
   if ! hash $dep 2> /dev/null; then
@@ -25,6 +22,9 @@ for dep in "${dependencies[@]}"; do
     exit 1
   fi
 done
+
+# current path
+current_path=$(realpath $(dirname $0))
 
 # opts
 while getopts "fo:s:ph" opts; do

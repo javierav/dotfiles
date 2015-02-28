@@ -17,7 +17,9 @@ fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # direnv
-eval "$(direnv hook $0)"
+if hash direnv 2> /dev/null; then
+  eval "$(direnv hook $0)"
+fi
 
 # load local bash_profile
 [[ -s "$HOME/.bash_profile.local" ]] && source "$HOME/.bash_profile.local"
