@@ -8,10 +8,37 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 PURPLE='\033[0;35m'
 
-# title
-echo -e "$PURPLE==============================="
-echo " ARANDAIO'S DOTFILES INSTALLER "
-echo -e "===============================$OFF\n"
+title() {
+  echo -e "    $PURPLE==============================="
+  echo -e "     ARANDAIO'S DOTFILES INSTALLER "
+  echo -e "    ===============================$OFF\n"
+}
+
+usage() {
+  cat << EOF
+    Usage: $0 [options]
+
+    Install the arandaio's dotfiles
+
+
+    OPTIONS:
+      -f force the installation
+      -o <name> specify the file to install
+      -s <name> specify the file to skip
+      -p pretend
+      -h print this help
+
+
+    DOTIGNORE:
+
+    Puts a .dotignore file in your \$HOME to avoid the installation of
+    specific dotfiles. One filename per line.
+
+EOF
+}
+
+# print title
+title
 
 # check dependencies
 dependencies=(realpath md5sum awk)
@@ -42,19 +69,7 @@ while getopts "fo:s:ph" opts; do
     SKIP+=("$OPTARG")
     ;;
   h)
-    echo -e "Usage: ./install.sh [options]\n\nOptions:\n"
-    echo -e "  -f force the installation"
-    echo -e "  -o <name> specify the file to install"
-    echo -e "  -s <name> specify the file to skip"
-    echo -e "  -p pretend"
-    echo -e "  -h print this help\n\n"
-
-    echo -e "[.dotignore]\n"
-    echo -e "Use this file in your \$HOME to avoid the installation of"
-    echo -e "specific dotfiles. One filename per line. "
-
-    echo ""
-
+    usage
     exit 1
  esac
 done
