@@ -1,12 +1,12 @@
 # vim: ft=sh
 
-source "$HOME/.bash_functions"
-source "$HOME/.bash_exports"
-source "$HOME/.bash_aliases"
-source "$HOME/.bash_prompt"
+source "__DOTFILES_PATH__/bash_functions"
+source "__DOTFILES_PATH__/bash_exports"
+source "__DOTFILES_PATH__/bash_aliases"
+source "__DOTFILES_PATH__/bash_prompt"
 
 # colors for ls command
-eval `dircolors $HOME/.dircolors`
+eval `dircolors __DOTFILES_PATH__/dircolors`
 
 # bash completion
 if [[ "$OSTYPE" =~ ^darwin ]] && [ -f $(brew --prefix)/etc/bash_completion ]; then

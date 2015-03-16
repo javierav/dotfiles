@@ -119,6 +119,8 @@ while read -r -u 3 file; do
   if [ -z "$PRETEND" ]; then
     # copy the file
     cp -f $current_path/$file $HOME/.$file
+    # replace variables
+    sed -i "s|__DOTFILES_PATH__|$current_path|g" $HOME/.$file
     echo -e "$GREEN\$HOME/.$file installed!$OFF"
   else
     # pretend
