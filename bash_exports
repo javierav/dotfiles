@@ -1,10 +1,28 @@
 # vim: ft=sh
 
+export EDITOR="vim -f"
+
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-  export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-  export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
   export DOCKER_HOST=tcp://192.168.59.103:2375
 fi
 
+# rvm
 export PATH="$HOME/.rvm/bin:/usr/local/bin:$PATH"
-export EDITOR="vim -f"
+
+# coreutils
+if [[ -d "/usr/local/opt/coreutils/libexec/gnubin" ]]; then
+  export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+fi
+
+if [[ -d "/usr/local/opt/coreutils/libexec/gnuman" ]]; then
+  export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+fi
+
+# sed replacement
+if [[ -d "/usr/local/opt/gnu-sed/libexec/gnubin" ]]; then
+  export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+fi
+
+if [[ -d "/usr/local/opt/gnu-sed/libexec/gnuman" ]]; then
+  export MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
+fi
