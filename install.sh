@@ -76,7 +76,6 @@ done
 
 # install dotfiles
 while read -r -u 3 file; do
-  echo "file: $file"
   # skip due to dotignore
   if [ -e "$HOME/.dotignore" ] && grep -Fxq "$file" "$HOME/.dotignore"; then
     echo -e "$BLUE\$HOME/.$file included in .dotignore file. Skipped!$OFF"
@@ -84,17 +83,18 @@ while read -r -u 3 file; do
   fi
 
   # skip due to only option
-  #if [ -n "$ONLY" ] && [ $file != $ONLY ]; then
-  #  continue
-  #fi
+  included=0
 
   for o in "${ONLY[@]}"; do
-    echo $o
-    if [ "$o" != "$file" ]; then
-      echo "aaa"
-      continue 2
+    if [ "$o" == "$file" ]; then
+      included=1
     fi
   done
+
+  if [ $included -eq 0 ]; then
+    echo -e "$BLUE\$HOME/.$file skipped!$OFF"
+    continue
+  fi
 
   # skip option
   for s in "${SKIP[@]}"; do
@@ -135,9 +135,4 @@ while read -r -u 3 file; do
     # pretend
     echo "[pretend] $current_path/$file -> $HOME/.$file"
   fi
-
-  # exit due to only option
-  #if [ -n "$ONLY" ]; then
-  #  exit 0
-  #fi
 done 3< $current_path/_files
