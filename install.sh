@@ -78,7 +78,7 @@ done
 while read -r -u 3 file; do
   # skip due to dotignore
   if [ -e "$HOME/.dotignore" ] && grep -Fxq "$file" "$HOME/.dotignore"; then
-    echo -e "$BLUE\$HOME/.$file included in .dotignore file. Skipped!$OFF"
+    echo -e "$BLUE\$HOME/.$file skipped! (included in .dotignore)$OFF"
     continue
   fi
 
