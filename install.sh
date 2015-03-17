@@ -60,7 +60,7 @@ while getopts "fo:s:ph" opts; do
     FORCE="yes"
     ;;
   o)
-    ONLY="$OPTARG"
+    ONLY+=("$OPTARG")
     ;;
   p)
     PRETEND="yes"
@@ -76,6 +76,7 @@ done
 
 # install dotfiles
 while read -r -u 3 file; do
+  echo "file: $file"
   # skip due to dotignore
   if [ -e "$HOME/.dotignore" ] && grep -Fxq "$file" "$HOME/.dotignore"; then
     echo -e "$BLUE\$HOME/.$file included in .dotignore file. Skipped!$OFF"
@@ -83,9 +84,17 @@ while read -r -u 3 file; do
   fi
 
   # skip due to only option
-  if [ -n "$ONLY" ] && [ $file != $ONLY ]; then
-    continue
-  fi
+  #if [ -n "$ONLY" ] && [ $file != $ONLY ]; then
+  #  continue
+  #fi
+
+  for o in "${ONLY[@]}"; do
+    echo $o
+    if [ "$o" != "$file" ]; then
+      echo "aaa"
+      continue 2
+    fi
+  done
 
   # skip option
   for s in "${SKIP[@]}"; do
@@ -128,7 +137,7 @@ while read -r -u 3 file; do
   fi
 
   # exit due to only option
-  if [ -n "$ONLY" ]; then
-    exit 0
-  fi
+  #if [ -n "$ONLY" ]; then
+  #  exit 0
+  #fi
 done 3< $current_path/_files
