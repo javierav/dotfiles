@@ -91,7 +91,7 @@ while read -r -u 3 file; do
     fi
   done
 
-  if [ $included -eq 0 ]; then
+  if [ $included -eq 0 ] && [ ${#ONLY[@]} -gt 0 ]; then
     echo -e "$BLUE\$HOME/.$file skipped!$OFF"
     continue
   fi
