@@ -2,13 +2,6 @@
 
 export EDITOR="vim -f"
 
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-  export DOCKER_HOST=tcp://192.168.59.103:2375
-fi
-
-# rvm
-export PATH="$HOME/.rvm/bin:/usr/local/bin:$PATH"
-
 # coreutils
 if [[ -d "/usr/local/opt/coreutils/libexec/gnubin" ]]; then
   export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"

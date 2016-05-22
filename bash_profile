@@ -13,9 +13,6 @@ if [[ "$OSTYPE" =~ ^darwin ]] && [ -f $(brew --prefix)/etc/bash_completion ]; th
   . $(brew --prefix)/etc/bash_completion
 fi
 
-# load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # direnv
 if hash direnv 2> /dev/null; then
   eval "$(direnv hook $0)"
