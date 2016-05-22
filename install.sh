@@ -8,37 +8,26 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 PURPLE='\033[0;35m'
 
-title() {
-  echo -e "    $PURPLE==============================="
-  echo -e "     ARANDAIO'S DOTFILES INSTALLER "
-  echo -e "    ===============================$OFF\n"
-}
-
 usage() {
   cat << EOF
-    Usage: $0 [options]
 
-    Install the arandaio's dotfiles
+  Usage: $0 [options]
 
-
-    OPTIONS:
-      -f force the installation
-      -o <name> specify the file to install
-      -s <name> specify the file to skip
-      -p pretend
-      -h print this help
+  OPTIONS:
+    -f force the installation
+    -o <name> specify the file to install
+    -s <name> specify the file to skip
+    -p pretend
+    -h print this help
 
 
-    DOTIGNORE:
+  DOTIGNORE:
 
-    Puts a .dotignore file in your \$HOME to avoid the installation of
-    specific dotfiles. One filename per line.
+  Puts a .dotignore file in your \$HOME to avoid the installation of
+  specific dotfiles. One filename per line.
 
 EOF
 }
-
-# print title
-title
 
 # check dependencies
 dependencies=(realpath md5sum awk)
@@ -111,13 +100,35 @@ while read -r -u 3 file; do
 
     # only if are different
     if [ $md5_dotfiles != $md5_home ]; then
-      read -e -p $'\033[0;33m'"\$HOME/.$file exists and is different, overwrite (y/n)?: "$'\033[0m' -n 1 answer
+      while true; do
+        read -e -p $'\033[0;33m'"\$HOME/.$file exists and is different, overwrite [y,n,d,h]?: "$'\033[0m' -n 1 answer
 
-      # skip
-      if [[ $answer = [nN] ]]; then
-        echo -e "$BLUE\$HOME/.$file skipped!$OFF"
-        continue
-      fi
+        # print help
+        if [[ $answer = [hH] ]]; then
+          echo -e "y - overwrite"
+          echo -e "n - not overwrite"
+          echo -e "d - view diff"
+          echo -e "h - print this help"
+          continue
+        fi
+
+        # print diff
+        if [[ $answer = [dD] ]]; then
+          git diff "$HOME/.$file" "$current_path/$file"
+          continue
+        fi
+
+        # overwrite
+        if [[ $answer = [yY] ]]; then
+          break
+        fi
+
+        # skip
+        if [[ $answer = [nN] ]]; then
+          echo -e "$BLUE\$HOME/.$file skipped!$OFF"
+          continue 2
+        fi
+      done
     else
       # skip because are equal
       echo -e "$BLUE\$HOME/.$file skipped! (is equal)$OFF"
