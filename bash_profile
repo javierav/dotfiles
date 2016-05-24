@@ -18,5 +18,8 @@ if hash direnv 2> /dev/null; then
   eval "$(direnv hook $0)"
 fi
 
+# rbenv
+eval "$(rbenv init -)"
+
 # load local bash_profile
 [[ -s "$HOME/.bash_profile.local" ]] && source "$HOME/.bash_profile.local"
