@@ -1,5 +1,8 @@
 # vim: ft=sh
 
+# load before bash_profile
+[[ -s "$HOME/.bash_profile.before" ]] && source "$HOME/.bash_profile.before"
+
 source "__DOTFILES_PATH__/bash_functions"
 source "__DOTFILES_PATH__/bash_exports"
 source "__DOTFILES_PATH__/bash_aliases"
@@ -21,5 +24,5 @@ fi
 # rbenv
 eval "$(rbenv init -)"
 
-# load local bash_profile
-[[ -s "$HOME/.bash_profile.local" ]] && source "$HOME/.bash_profile.local"
+# load after bash_profile
+[[ -s "$HOME/.bash_profile.after" ]] && source "$HOME/.bash_profile.after"
