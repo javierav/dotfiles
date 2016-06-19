@@ -22,7 +22,9 @@ if hash direnv 2> /dev/null; then
 fi
 
 # rbenv
-eval "$(rbenv init -)"
+if hash rbenv 2> /dev/null; then
+  eval "$(rbenv init -)"
+fi
 
 # load after bash_profile
 [[ -s "$HOME/.bash_profile.after" ]] && source "$HOME/.bash_profile.after"
