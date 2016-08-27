@@ -4,6 +4,7 @@ gemrc
 gitconfig
 gitignore
 rubocop.yml
+screenrc
 tmux.conf
 wgetrc
 Xdefaults
