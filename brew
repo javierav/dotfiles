@@ -1,6 +1,7 @@
 brew install bash-completion
 brew install coreutils
 brew install direnv
+brew install doctl
 brew install git
 brew install git-extras
 brew install gnu-sed --with-default-names
