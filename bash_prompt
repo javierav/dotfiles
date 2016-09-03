@@ -1,29 +1,12 @@
 # vim: ft=sh
 
-#function parse_git_branch {
-#  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-#}
-
-function parse_git_dirty() {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" && $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
+parse_git_dirty() {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
 }
 
-function parse_git_branch() {
+parse_git_branch() {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
-
-# old colors
-#BLUE="\[\033[0;34m\]"
-#LIGHT_BLUE="\[\033[1;34m\]"
-#RED="\[\033[0;31m\]"
-#LIGHT_RED="\[\033[1;31m\]"
-#LIGHT_RED="\[\033[1;31m\]"
-#GREEN="\[\033[0;32m\]"
-#LIGHT_GREEN="\[\033[1;32m\]"
-#WHITE="\[\033[1;37m\]"
-#LIGHT_GRAY="\[\033[0;37m\]"
-#DARK_GRAY="\[\033[1;30m\]"
-#BLACK="\[\033[0;30m\]"
 
 # https://wiki.archlinux.org/index.php/Color_Bash_Prompt
 
@@ -108,7 +91,7 @@ IBWHITE='\[\033[0;107m\]'   # White
 #  \$  Shows a $ for a regular user or # for root user
 #  \\  A literal backslash "\" character
 
-function prompt_command() {
+prompt_command() {
   PS1="$OFF"
 
   # git branch and status
