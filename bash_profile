@@ -1,29 +1,17 @@
 # vim: ft=sh
 
+# BASH_PROFILE
+# This file is executed for login shells (when you type username and password)
+# via console, either sitting at the machine, or remotely via ssh to configure
+# your shell before the initial command prompt.
+
+
 # load before bash_profile
 [[ -s "$HOME/.bash_profile.before" ]] && source "$HOME/.bash_profile.before"
 
-source "__DOTFILES_PATH__/bash_functions"
-source "__DOTFILES_PATH__/bash_exports"
-source "__DOTFILES_PATH__/bash_aliases"
-source "__DOTFILES_PATH__/bash_prompt"
-
-# colors for ls command
-eval `dircolors __DOTFILES_PATH__/dircolors`
-
-# bash completion
-if [[ "$OSTYPE" =~ ^darwin ]] && [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
-# direnv
-if hash direnv 2> /dev/null; then
-  eval "$(direnv hook $0)"
-fi
-
-# rbenv
-if hash rbenv 2> /dev/null; then
-  eval "$(rbenv init -)"
+# load bashrc to avoid code duplication
+if [ -f ~/.bashrc ]; then
+  source ~/.bashrc
 fi
 
 # load after bash_profile
