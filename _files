@@ -3,6 +3,7 @@ bashrc
 gemrc
 gitconfig
 gitignore
+npmrc
 rubocop.yml
 screenrc
 tmux.conf
