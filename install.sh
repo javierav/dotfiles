@@ -33,7 +33,7 @@ EOF
 dependencies=(realpath md5sum awk)
 
 for dep in "${dependencies[@]}"; do
-  if ! hash $dep 2> /dev/null; then
+  if ! hash "$dep" 2> /dev/null; then
     echo -e "${RED}Error. Please install the '$dep' command!$OFF\n"
     exit 1
   fi
@@ -95,11 +95,11 @@ while read -r -u 3 file; do
   # already exists a file at the same path
   if [ -e "$HOME/.$file" ] && [ -z "$FORCE" ]; then
     # checksum
-    md5_dotfiles=$(md5sum $current_path/$file | awk '{ print $1 }')
-    md5_home=$(md5sum $HOME/.$file | awk '{ print $1 }')
+    md5_dotfiles=$(md5sum "$current_path/$file" | awk '{ print $1 }')
+    md5_home=$(md5sum "$HOME/.$file" | awk '{ print $1 }')
 
     # only if are different
-    if [ $md5_dotfiles != $md5_home ]; then
+    if [ "$md5_dotfiles" != "$md5_home" ]; then
       while true; do
         read -e -p $'\033[0;33m'"\$HOME/.$file exists and is different, overwrite [y,n,d,h]?: "$'\033[0m' -n 1 answer
 
@@ -138,12 +138,10 @@ while read -r -u 3 file; do
 
   if [ -z "$PRETEND" ]; then
     # copy the file
-    cp -f $current_path/$file $HOME/.$file
-    # replace variables
-    sed -i "s|__DOTFILES_PATH__|$current_path|g" $HOME/.$file
+    cp -f "$current_path/$file" "$HOME/.$file"
     echo -e "$GREEN\$HOME/.$file installed!$OFF"
   else
     # pretend
     echo "[pretend] $current_path/$file -> $HOME/.$file"
   fi
-done 3< $current_path/_files
+done 3< "$current_path/_files"
