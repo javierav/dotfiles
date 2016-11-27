@@ -29,6 +29,7 @@ livereload@0.4.4
 merge-conflicts@1.4.4
 pigments@0.35.1
 railscasts-theme@1.4.0
+ruby-slim@0.2.0
 ruby-test@0.9.17
 seti-ui@1.3.2
 ssh-config@0.10.1
