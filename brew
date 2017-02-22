@@ -1,14 +1,18 @@
+brew tap caskroom/cask
 brew install bash-completion
 brew install coreutils
 brew install ctags
 brew install direnv
 brew install doctl
+brew install dos2unix
 brew install git
 brew install git-extras
 brew install gnu-sed --with-default-names
 brew install gpg
 brew install htop-osx
+brew install httpie
 brew install imagemagick
+brew install jq
 brew install md5sha1sum
 brew install midnight-commander
 brew install mongodb
@@ -26,6 +30,7 @@ brew install tree
 brew install unrar
 brew install vim
 brew install wget
+brew cask install meld
 brew linkapps terminal-notifier
 brew services start mongodb
 brew services start redis
