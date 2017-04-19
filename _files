@@ -4,6 +4,7 @@ gemrc
 gitconfig
 gitignore
 npmrc
+railsrc
 rubocop.yml
 screenrc
 tmux.conf
