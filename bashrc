@@ -9,13 +9,13 @@
 # load before bashrc
 [[ -s "$HOME/.bashrc.before" ]] && source "$HOME/.bashrc.before"
 
-source ".dotfiles/bash_functions"
-source ".dotfiles/bash_exports"
-source ".dotfiles/bash_aliases"
-source ".dotfiles/bash_prompt"
+source "$HOME/.dotfiles/bash_functions"
+source "$HOME/.dotfiles/bash_exports"
+source "$HOME/.dotfiles/bash_aliases"
+source "$HOME/.dotfiles/bash_prompt"
 
 # colors for ls command
-eval `dircolors .dotfiles/dircolors`
+eval `dircolors $HOME/.dotfiles/dircolors`
 
 # bash completion
 if [[ "$OSTYPE" =~ ^darwin ]] && [ -f $(brew --prefix)/etc/bash_completion ]; then
