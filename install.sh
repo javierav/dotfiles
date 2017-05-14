@@ -18,6 +18,7 @@ usage() {
     -o <name> specify the file to install
     -s <name> specify the file to skip
     -p pretend
+    -a ask before install
     -h print this help
 
 
@@ -43,7 +44,7 @@ done
 current_path=$(realpath $(dirname $0))
 
 # opts
-while getopts "fo:s:ph" opts; do
+while getopts "fo:s:pah" opts; do
  case ${opts} in
   f)
     FORCE="yes"
@@ -56,6 +57,9 @@ while getopts "fo:s:ph" opts; do
     ;;
   s)
     SKIP+=("$OPTARG")
+    ;;
+  a)
+    ASK="yes"
     ;;
   h)
     usage
@@ -91,6 +95,33 @@ while read -r -u 3 file; do
       continue 2
     fi
   done
+
+  # ask for install
+  if [ -n "$ASK" ]; then
+    while true; do
+      # print question
+      read -e -p $'\033[0;33m'"Do you want to install \$HOME/.$file file? [y,n,h]: "$'\033[0m' -n 1 answer
+
+      # print help
+      if [[ $answer = [hH] ]]; then
+        echo -e "y - install file"
+        echo -e "n - not install file"
+        echo -e "h - print this help"
+        continue
+      fi
+
+      # install
+      if [[ $answer = [yY] ]]; then
+        break
+      fi
+
+      # skip
+      if [[ $answer = [nN] ]]; then
+        echo -e "$BLUE\$HOME/.$file skipped!$OFF"
+        continue 2
+      fi
+    done
+  fi
 
   # already exists a file at the same path
   if [ -e "$HOME/.$file" ] && [ -z "$FORCE" ]; then
