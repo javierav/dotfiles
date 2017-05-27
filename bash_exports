@@ -1,5 +1,6 @@
 # vim: ft=sh
 
+# set default editor to Vim
 export EDITOR="vim -f"
 
 # coreutils
@@ -24,3 +25,6 @@ fi
 if [[ -d "$HOME/.npm-global/bin" ]]; then
   export PATH="$HOME/.npm-global/bin/:$PATH"
 fi
+
+# Include custom exports
+[[ -s "$HOME/.bash_exports.local" ]] && source "$HOME/.bash_exports.local"

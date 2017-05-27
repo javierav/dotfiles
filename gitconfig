@@ -1,14 +1,20 @@
 # vim: ft=gitconfig
 
-[user]
-	name = Javier Aranda
-	email = javier.aranda.varo@gmail.com
 [color]
   ui = true
 [core]
 	excludesfile = ~/.gitignore
   editor = vim -f
+[fetch]
+  prune = true
+[merge]
+  ff = only
 [push]
-	default = simple
-[http]
-	sslVerify = false
+	default = current
+[rebase]
+  autostash =  true
+[user]
+	name = Javier Aranda
+	email = javier.aranda.varo@gmail.com
+[include]
+  path = ~/.gitconfig.local

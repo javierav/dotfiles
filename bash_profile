@@ -10,9 +10,7 @@
 [[ -s "$HOME/.bash_profile.before" ]] && source "$HOME/.bash_profile.before"
 
 # load bashrc to avoid code duplication
-if [ -f ~/.bashrc ]; then
-  source ~/.bashrc
-fi
+[[ -s "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
 
 # load after bash_profile
 [[ -s "$HOME/.bash_profile.after" ]] && source "$HOME/.bash_profile.after"

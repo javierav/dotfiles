@@ -19,7 +19,7 @@ eval `dircolors $HOME/.dotfiles/dircolors`
 
 # bash completion
 if [[ "$OSTYPE" =~ ^darwin ]] && [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+  source "$(brew --prefix)/etc/bash_completion"
 fi
 
 # rbenv
