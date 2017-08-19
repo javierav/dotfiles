@@ -94,6 +94,11 @@ IBWHITE='\[\033[0;107m\]'   # White
 prompt_command() {
   PS1="$OFF"
 
+  # screen detector
+  if [[ -n "$STY" ]]; then
+    PS1="$YELLOW[$STY] "
+  fi
+
   # git branch and status
   if [[ -n $(parse_git_branch) ]]; then
     PS1="$PS1$RED\$(parse_git_branch) "
