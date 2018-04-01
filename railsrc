@@ -1,7 +1,0 @@
---skip-bundle
---skip-spring
---skip-test
---skip-action-cable
---skip-active-record
---skip-puma
---skip-turbolinks
