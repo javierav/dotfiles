@@ -31,6 +31,12 @@ if hash rbenv 2> /dev/null; then
   eval "$(rbenv init -)"
 fi
 
+# asdf
+if [[ -e "$HOME/.asdf/asdf.sh" ]]; then
+  source "$HOME/.asdf/asdf.sh"
+  source "$HOME/.asdf/completions/asdf.bash"
+fi
+
 # direnv
 if hash direnv 2> /dev/null; then
   eval "$(direnv hook bash)"
