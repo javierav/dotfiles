@@ -8,6 +8,10 @@ parse_git_branch() {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
+parse_git_remote_tracking() {
+  git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD 2> /dev/null) 2> /dev/null
+}
+
 # https://wiki.archlinux.org/index.php/Color_Bash_Prompt
 
 # Reset
@@ -102,6 +106,13 @@ prompt_command() {
   # git branch and status
   if [[ -n $(parse_git_branch) ]]; then
     PS1="$PS1$RED\$(parse_git_branch) "
+  fi
+
+  # git remote tracking
+  REMOTETRACKING="$(parse_git_remote_tracking)"
+
+  if [[ -n "$REMOTETRACKING" ]]; then
+    PS1="$PS1$YELLOW($REMOTETRACKING) "
   fi
 
   if [[ $(id -u) -eq 0 ]]; then
