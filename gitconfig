@@ -1,20 +1,8 @@
 # vim: ft=gitconfig
 
-[color]
-  ui = true
-[core]
-	excludesfile = ~/.gitignore
-  editor = vim -f
-[fetch]
-  prune = true
-[merge]
-  ff = only
-[push]
-	default = current
-[rebase]
-  autostash =  true
-[user]
-	name = Javier Aranda
-	email = javier.aranda.varo@gmail.com
 [include]
-  path = ~/.gitconfig.local
+  path = ~/.dotfiles/gitconfig.global
+[user]
+  name = Javier Aranda
+  email = javier.aranda.varo@gmail.com
+	signingkey = 43B35437CC47450C
