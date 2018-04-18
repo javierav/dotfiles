@@ -48,4 +48,4 @@ $ cd .dotfiles && ./atom/load_atom_packages.sh
 
 ## License
 
-Copyright (c) 2017 Javier Aranda - Released under [MIT](LICENSE) license
+Copyright (c) 2018 Javier Aranda - Released under [MIT](LICENSE) license
