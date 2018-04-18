@@ -3,17 +3,17 @@
 [color]
   ui = true
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
   editor = vim -f
 [fetch]
   prune = true
 [merge]
   ff = only
 [push]
-	default = current
+  default = current
 [rebase]
   autostash =  true
 [commit]
   gpgsign = true
 [gpg]
-	program = gpg2
+  program = gpg2
