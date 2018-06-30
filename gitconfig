@@ -2,6 +2,7 @@
 
 [include]
   path = ~/.dotfiles/gitconfig.global
+  path = ~/.dotfiles/gitalias/gitalias.txt
 [user]
   name = Javier Aranda
   email = javier.aranda.varo@gmail.com

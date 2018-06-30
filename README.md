@@ -23,6 +23,14 @@ Install dotfiles:
 $ cd .dotfiles && ./install.sh
 ```
 
+### Submodules
+
+We use git submodules for include other projects inside this.
+
+```
+$ cd .dotfiles && git submodule update --init
+```
+
 ### Brew dependencies
 
 Install Homebrew Bundle package:

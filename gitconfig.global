@@ -1,19 +1,26 @@
 # vim: ft=gitconfig
 
+[commit]
+  gpgsign = true
+
 [color]
   ui = true
+
 [core]
   excludesfile = ~/.gitignore
   editor = vim -f
+
 [fetch]
   prune = true
-[merge]
-  ff = only
-[push]
-  default = current
-[rebase]
-  autostash =  true
-[commit]
-  gpgsign = true
+
 [gpg]
   program = gpg2
+
+[merge]
+  ff = only
+
+[push]
+  default = current
+
+[rebase]
+  autostash =  true
