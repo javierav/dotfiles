@@ -18,6 +18,7 @@
 
 [merge]
   ff = only
+  tool = vimdiff
 
 [push]
   default = current
