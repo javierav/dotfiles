@@ -22,15 +22,6 @@ if [[ "$OSTYPE" =~ ^darwin ]] && [ -f $(brew --prefix)/etc/bash_completion ]; th
   source "$(brew --prefix)/etc/bash_completion"
 fi
 
-# rbenv
-if [[ -d "$HOME/.rbenv/bin" ]]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-fi
-
-if hash rbenv 2> /dev/null; then
-  eval "$(rbenv init -)"
-fi
-
 # asdf
 if [[ -e "$HOME/.asdf/asdf.sh" ]]; then
   source "$HOME/.asdf/asdf.sh"
