@@ -3,7 +3,11 @@
 [include]
   path = ~/.dotfiles/gitconfig.global
   path = ~/.dotfiles/gitalias/gitalias.txt
+
 [user]
   name = Javier Aranda
   email = javier.aranda.varo@gmail.com
   signingkey = 43B35437CC47450C
+
+[commit]
+  gpgsign = true

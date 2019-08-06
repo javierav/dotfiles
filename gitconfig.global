@@ -1,8 +1,5 @@
 # vim: ft=gitconfig
 
-[commit]
-  gpgsign = true
-
 [color]
   ui = true
 
@@ -17,11 +14,10 @@
   program = gpg2
 
 [merge]
-  ff = only
   tool = vimdiff
 
 [push]
   default = current
 
 [rebase]
-  autostash =  true
+  autostash = true
