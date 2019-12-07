@@ -36,7 +36,7 @@ $ cd .dotfiles && git submodule update --init
 Install Homebrew Bundle package:
 
 ```
-$ brew tap Homebrew/bundle
+$ brew tap homebrew/bundle
 ```
 
 Install dependencies:
@@ -45,15 +45,7 @@ Install dependencies:
 $ brew bundle
 ```
 
-### Atom Editor packages
-
-Install Atom from [atom.io](https://atom.io) and then
-
-```
-$ cd .dotfiles && ./atom/load_atom_packages.sh
-```
-
 
 ## License
 
-Copyright (c) 2019 Javier Aranda - Released under [MIT](LICENSE) license
+Copyright (c) 2019 Javier Aranda - Released under [MIT](LICENSE) license.
