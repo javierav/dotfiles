@@ -15,18 +15,19 @@ source "$HOME/.dotfiles/bash_aliases"
 source "$HOME/.dotfiles/bash_prompt"
 
 # colors for ls command
-eval `dircolors $HOME/.dotfiles/dircolors`
+if hash dircolors 2> /dev/null; then
+  eval `dircolors $HOME/.dotfiles/dircolors`
+fi
 
 # bash completion
-if [[ "$OSTYPE" =~ ^darwin ]] && [ -f $(brew --prefix)/etc/bash_completion ]; then
-  source "$(brew --prefix)/etc/bash_completion"
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+
+if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]];then
+  source "/usr/local/etc/profile.d/bash_completion.sh"
 fi
 
 # asdf
-if [[ -e "$HOME/.asdf/asdf.sh" ]]; then
-  source "$HOME/.asdf/asdf.sh"
-  source "$HOME/.asdf/completions/asdf.bash"
-fi
+[[ -r "/usr/local/opt/asdf/asdf.sh" ]] && source "/usr/local/opt/asdf/asdf.sh"
 
 # direnv
 if hash direnv 2> /dev/null; then
