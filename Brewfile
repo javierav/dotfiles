@@ -1,49 +1,57 @@
-# Add Homebrew repositories
-tap 'homebrew/boneyard'
-tap 'homebrew/bundle'
-tap 'caskroom/cask'
-tap 'homebrew/core'
-tap 'homebrew/gui'
-tap 'homebrew/services'
-tap 'homebrew/versions'
+#
+## Homebrew Bundle tool
+#
 
-# Install packages
-brew 'autoconf'
-brew 'automake'
-brew 'awscli'
-brew 'bash-completion'
-brew 'coreutils'
-brew 'direnv'
-brew 'git'
-brew 'gnu-sed', args: ['with-default-names']
-brew 'htop'
-brew 'httpie'
-brew 'imagemagick'
-brew 'jq'
-brew 'libusb-compat'
-brew 'libssh2'
-brew 'libxslt'
-brew 'libyaml'
-brew 'midnight-commander'
-brew 'mongodb', restart_service: true
-brew 'ncdu'
-brew 'node@8', link: true
-brew 'openssl'
-brew 'rbenv'
-brew 'rbenv-bundler-ruby-version'
-brew 'readline'
-brew 'ruby-build'
-brew 's3cmd'
-brew 'shellcheck'
-brew 'terminal-notifier'
-brew 'tmux'
-brew 'tree'
-brew 'vim'
-brew 'wget'
-brew 'yarn'
+# To install all packages execute: brew bundle
 
-# Install desktop apps
-cask 'insomnia'
-cask 'keepassx'
-cask 'macdown'
-cask 'meld'
+
+#
+## Repositories
+#
+tap "homebrew/core"
+tap "homebrew/homebrew-bundle"
+tap "homebrew/homebrew-cask"
+tap "homebrew/services"
+
+#
+## Tools
+#
+brew "asdf"
+brew "bash"
+brew "bash-completion@2"
+brew "coreutils"
+brew "direnv"
+brew "git"
+brew "git-extras"
+brew "gnu-sed"
+brew "htop"
+brew "imagemagick"
+brew "jq"
+brew "kubernetes-cli"
+brew "mas"
+brew "ncdu"
+brew "postgresql", restart_service: true
+brew "s3cmd"
+brew "shellcheck"
+brew "terminal-notifier"
+brew "tree"
+brew "vim"
+brew "wget"
+brew "yarn"
+brew "youtube-dl"
+
+#
+## Apps
+#
+cask "cyberduck"
+cask "google-backup-and-sync"
+cask "google-chrome"
+cask "licecap"
+cask "macdown"
+cask "macpass"
+cask "meld"
+cask "ngrok"
+cask "the-unarchiver"
+cask "tunnelblick"
+cask "virtualbox"
+cask "vlc"
