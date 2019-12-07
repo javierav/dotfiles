@@ -3,6 +3,9 @@
 # set default editor to Vim
 export EDITOR="vim -f"
 
+# disable OSX warning message
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # coreutils
 if [[ -d "/usr/local/opt/coreutils/libexec/gnubin" ]]; then
   export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
