@@ -24,12 +24,17 @@ brew "direnv"
 brew "git"
 brew "git-extras"
 brew "gnu-sed"
+brew "gpg" # for nodejs install
 brew "htop"
 brew "imagemagick"
 brew "jq"
 brew "kubernetes-cli"
+brew "libffi" # for ruby build
+brew "libyaml" # for ruby build
 brew "mas"
+brew "mc"
 brew "ncdu"
+brew "openssl" # for ruby build
 brew "postgresql", restart_service: true
 brew "s3cmd"
 brew "shellcheck"
@@ -51,6 +56,7 @@ cask "macdown"
 cask "macpass"
 cask "meld"
 cask "ngrok"
+cask "qlvideo"
 cask "the-unarchiver"
 cask "tunnelblick"
 cask "virtualbox"
