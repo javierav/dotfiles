@@ -115,15 +115,19 @@ prompt_command() {
     PS1="$PS1$YELLOW($REMOTETRACKING) "
   fi
 
-  if [ "$(id -u)" -eq 0 ]; then
-    # root prompt
-    PS1="$PS1$BOLD_RED"
-  else
-    # normal user prompt
-    PS1="$PS1$GREEN"
-  fi
+  if [ -z "$DISABLE_USER_IN_PROMPT" ]; then
+    if [ "$(id -u)" -eq 0 ]; then
+      # root prompt
+      PS1="$PS1$BOLD_RED"
+    else
+      # normal user prompt
+      PS1="$PS1$GREEN"
+    fi
 
-  PS1="$PS1\\u@\\H$BOLD_BLUE \\w $YELLOW\$ $WHITE"
+    PS1="$PS1\\u@\\H$BOLD_BLUE \\w $YELLOW\$ $WHITE"
+  else
+    PS1="$PS1$BOLD_BLUE \\w $YELLOW\$ $WHITE"
+  fi
 }
 
 export PROMPT_COMMAND="prompt_command"
