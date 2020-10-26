@@ -20,10 +20,15 @@ if hash dircolors 2> /dev/null; then
 fi
 
 # bash completion
-export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-
-if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]];then
-  source "/usr/local/etc/profile.d/bash_completion.sh"
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+    done
+  fi
 fi
 
 # asdf
@@ -32,6 +37,11 @@ fi
 # direnv
 if hash direnv 2> /dev/null; then
   eval "$(direnv hook bash)"
+fi
+
+# buildpacks.io pack command
+if hash pack 2> /dev/null; then
+  eval "$(pack completion)"
 fi
 
 # load after bashrc
