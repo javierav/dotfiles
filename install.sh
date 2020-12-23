@@ -19,12 +19,13 @@ usage() {
     -s <name> specify the file to skip
     -p pretend
     -a ask before install
+    -i <path> specify the install directory. Default \$HOME.
     -h print this help
 
 
   DOTIGNORE:
 
-  Puts a .dotignore file in your \$HOME to avoid the installation of
+  Puts a .dotignore file in your \$INSTALLDIR to avoid the installation of
   specific dotfiles. One filename per line.
 
 EOF
@@ -44,7 +45,7 @@ done
 current_path=$(realpath $(dirname $0))
 
 # opts
-while getopts "fo:s:pah" opts; do
+while getopts "fo:s:i:pah" opts; do
  case ${opts} in
   f)
     FORCE="yes"
@@ -61,17 +62,25 @@ while getopts "fo:s:pah" opts; do
   a)
     ASK="yes"
     ;;
+  i)
+    INSTALLDIR+=("$OPTARG")
+    ;;
   h)
     usage
     exit 1
  esac
 done
 
+
+if [ -z "$INSTALLDIR" ]; then
+  INSTALLDIR="$HOME"
+fi
+
 # install dotfiles
 while read -r -u 3 file; do
   # skip due to dotignore
-  if [ -e "$HOME/.dotignore" ] && grep -Fxq "$file" "$HOME/.dotignore"; then
-    echo -e "$BLUE\$HOME/.$file skipped! (included in .dotignore)$OFF"
+  if [ -e "$INSTALLDIR/.dotignore" ] && grep -Fxq "$file" "$INSTALLDIR/.dotignore"; then
+    echo -e "$BLUE$INSTALLDIR/.$file skipped! (included in .dotignore)$OFF"
     continue
   fi
 
@@ -85,7 +94,7 @@ while read -r -u 3 file; do
   done
 
   if [ $included -eq 0 ] && [ ${#ONLY[@]} -gt 0 ]; then
-    echo -e "$BLUE\$HOME/.$file skipped!$OFF"
+    echo -e "$BLUE$INSTALLDIR/.$file skipped!$OFF"
     continue
   fi
 
@@ -100,7 +109,7 @@ while read -r -u 3 file; do
   if [ -n "$ASK" ]; then
     while true; do
       # print question
-      read -e -p $'\033[0;33m'"Do you want to install \$HOME/.$file file? [y,n,h]: "$'\033[0m' -n 1 answer
+      read -e -p $'\033[0;33m'"Do you want to install $INSTALLDIR/.$file file? [y,n,h]: "$'\033[0m' -n 1 answer
 
       # print help
       if [[ $answer = [hH] ]]; then
@@ -117,22 +126,22 @@ while read -r -u 3 file; do
 
       # skip
       if [[ $answer = [nN] ]]; then
-        echo -e "$BLUE\$HOME/.$file skipped!$OFF"
+        echo -e "$BLUE$INSTALLDIR/.$file skipped!$OFF"
         continue 2
       fi
     done
   fi
 
   # already exists a file at the same path
-  if [ -e "$HOME/.$file" ] && [ -z "$FORCE" ]; then
+  if [ -e "$INSTALLDIR/.$file" ] && [ -z "$FORCE" ]; then
     # checksum
     md5_dotfiles=$(md5sum "$current_path/$file" | awk '{ print $1 }')
-    md5_home=$(md5sum "$HOME/.$file" | awk '{ print $1 }')
+    md5_home=$(md5sum "$INSTALLDIR/.$file" | awk '{ print $1 }')
 
     # only if are different
     if [ "$md5_dotfiles" != "$md5_home" ]; then
       while true; do
-        read -e -p $'\033[0;33m'"\$HOME/.$file exists and is different, overwrite [y,n,d,h]?: "$'\033[0m' -n 1 answer
+        read -e -p $'\033[0;33m'"$INSTALLDIR/.$file exists and is different, overwrite [y,n,d,h]?: "$'\033[0m' -n 1 answer
 
         # print help
         if [[ $answer = [hH] ]]; then
@@ -145,7 +154,7 @@ while read -r -u 3 file; do
 
         # print diff
         if [[ $answer = [dD] ]]; then
-          git diff "$HOME/.$file" "$current_path/$file"
+          git diff "$INSTALLDIR/.$file" "$current_path/$file"
           continue
         fi
 
@@ -156,23 +165,23 @@ while read -r -u 3 file; do
 
         # skip
         if [[ $answer = [nN] ]]; then
-          echo -e "$BLUE\$HOME/.$file skipped!$OFF"
+          echo -e "$BLUE$INSTALLDIR/.$file skipped!$OFF"
           continue 2
         fi
       done
     else
       # skip because are equal
-      echo -e "$BLUE\$HOME/.$file skipped! (is equal)$OFF"
+      echo -e "$BLUE$INSTALLDIR/.$file skipped! (is equal)$OFF"
       continue
     fi
   fi
 
   if [ -z "$PRETEND" ]; then
     # copy the file
-    cp -f "$current_path/$file" "$HOME/.$file"
-    echo -e "$GREEN\$HOME/.$file installed!$OFF"
+    cp -f "$current_path/$file" "$INSTALLDIR/.$file"
+    echo -e "$GREEN$INSTALLDIR/.$file installed!$OFF"
   else
     # pretend
-    echo "[pretend] $current_path/$file -> $HOME/.$file"
+    echo "[pretend] $current_path/$file -> $INSTALLDIR/.$file"
   fi
 done 3< "$current_path/_files"
