@@ -1,5 +1,9 @@
 # vim: ft=gitconfig
 
+[alias]
+  cad = !git commit --amend --date=now
+  cadne = !git commit --amend --no-edit --date=now
+
 [color]
   ui = true
 
@@ -11,10 +15,13 @@
   prune = true
 
 [gpg]
-  program = gpg2
+  program = /opt/homebrew/bin/gpg
 
 [merge]
   tool = vimdiff
+
+[pull]
+  rebase = false
 
 [push]
   default = current

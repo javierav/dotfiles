@@ -6,22 +6,25 @@ export EDITOR="vim -f"
 # disable OSX warning message
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+# homebrew
+eval $(/opt/homebrew/bin/brew shellenv)
+
 # coreutils
-if [[ -d "/usr/local/opt/coreutils/libexec/gnubin" ]]; then
-  export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+if [[ -d "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin" ]]; then
+  export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 fi
 
-if [[ -d "/usr/local/opt/coreutils/libexec/gnuman" ]]; then
-  export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+if [[ -d "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman" ]]; then
+  export MANPATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman:$MANPATH"
 fi
 
 # sed replacement
-if [[ -d "/usr/local/opt/gnu-sed/libexec/gnubin" ]]; then
-  export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+if [[ -d "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin" ]]; then
+  export PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
 fi
 
-if [[ -d "/usr/local/opt/gnu-sed/libexec/gnuman" ]]; then
-  export MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
+if [[ -d "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnuman" ]]; then
+  export MANPATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnuman:$MANPATH"
 fi
 
 # bin local

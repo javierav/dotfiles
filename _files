@@ -1,7 +1,6 @@
 bash_profile
 bashrc
 default-gems
-default-npm-packages
 gemrc
 gitconfig
 gitignore

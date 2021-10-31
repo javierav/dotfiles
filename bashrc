@@ -21,7 +21,6 @@ fi
 
 # bash completion
 if type brew &>/dev/null; then
-  HOMEBREW_PREFIX="$(brew --prefix)"
   if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
     source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
   else
@@ -32,7 +31,7 @@ if type brew &>/dev/null; then
 fi
 
 # asdf
-[[ -r "/usr/local/opt/asdf/asdf.sh" ]] && source "/usr/local/opt/asdf/asdf.sh"
+[[ -r "${HOMEBREW_PREFIX}/opt/asdf/asdf.sh" ]] && source "${HOMEBREW_PREFIX}/opt/asdf/asdf.sh"
 
 # direnv
 if hash direnv 2> /dev/null; then
