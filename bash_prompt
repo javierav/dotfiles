@@ -126,7 +126,7 @@ prompt_command() {
 
     PS1="$PS1\\u@\\H$BOLD_BLUE \\w $YELLOW\$ $WHITE"
   else
-    PS1="$PS1$BOLD_BLUE \\w $YELLOW\$ $WHITE"
+    PS1="$PS1$BOLD_BLUE\\w $YELLOW\$ $WHITE"
   fi
 }
 
