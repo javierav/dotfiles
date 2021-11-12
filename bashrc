@@ -9,6 +9,20 @@
 # load before bashrc
 [[ -s "$HOME/.bashrc.before" ]] && source "$HOME/.bashrc.before"
 
+# homebrew
+if type /opt/homebrew/bin/brew &>/dev/null; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+
+  # bash completion
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+    done
+  fi
+fi
+
 source "$HOME/.dotfiles/bash_functions"
 source "$HOME/.dotfiles/bash_exports"
 source "$HOME/.dotfiles/bash_aliases"
@@ -17,17 +31,6 @@ source "$HOME/.dotfiles/bash_prompt"
 # colors for ls command
 if hash dircolors 2> /dev/null; then
   eval `dircolors $HOME/.dotfiles/dircolors`
-fi
-
-# bash completion
-if type brew &>/dev/null; then
-  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-  else
-    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
-    done
-  fi
 fi
 
 # asdf

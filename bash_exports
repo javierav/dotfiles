@@ -6,9 +6,6 @@ export EDITOR="vim -f"
 # disable OSX warning message
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# homebrew
-eval $(/opt/homebrew/bin/brew shellenv)
-
 # coreutils
 if [[ -d "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin" ]]; then
   export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
