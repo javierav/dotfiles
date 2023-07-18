@@ -48,4 +48,4 @@ $ brew bundle
 
 ## License
 
-Copyright (c) 2014-2021 Javier Aranda - Released under [MIT](LICENSE) license.
+Copyright (c) 2014-2023 Javier Aranda - Released under [MIT](LICENSE) license.
