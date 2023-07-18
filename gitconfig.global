@@ -4,6 +4,9 @@
   cad = !git commit --amend --date=now
   cadne = !git commit --amend --no-edit --date=now
 
+[checkout]
+  defaultRemote = origin
+
 [color]
   ui = true
 
