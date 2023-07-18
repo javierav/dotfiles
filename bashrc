@@ -34,7 +34,8 @@ if hash dircolors 2> /dev/null; then
 fi
 
 # asdf
-[[ -r "${HOMEBREW_PREFIX}/opt/asdf/asdf.sh" ]] && source "${HOMEBREW_PREFIX}/opt/asdf/asdf.sh"
+[[ -r "${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh" ]] && source "${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh"
+[[ -r "${HOMEBREW_PREFIX}/opt/asdf/etc/bash_completion.d/asdf.bash" ]] && source "${HOMEBREW_PREFIX}/opt/asdf/etc/bash_completion.d/asdf.bash"
 
 # direnv
 if hash direnv 2> /dev/null; then
