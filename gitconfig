@@ -7,10 +7,13 @@
 [user]
   name = Javier Aranda
   email = aranda@hey.com
-  signingkey = 6CB2CFC7D2282688
+	signingkey = ~/.ssh/id_ed25519.pub
 
 [commit]
   gpgsign = true
+
+[gpg]
+	format = ssh
 
 [init]
 	defaultBranch = development
